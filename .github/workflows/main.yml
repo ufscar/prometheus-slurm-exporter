@@ -15,13 +15,14 @@ jobs:
       image: centos:7.9.2009
       options: --privileged
 
+    env:
+      PSE_VERSION: ${{ secrets.PSE_VERSION }}
+      SO: ${{ secrets.SO }}
+      ARCHITECTURE: ${{ secrets.ARCHITECTURE }}
+
     steps:
       - uses: actions/checkout@v2
       - name: Define needed variables
-        env:
-          PSE_VERSION: ${{ secrets.PSE_VERSION }}
-          SO: ${{ secrets.SO }}
-          ARCHITECTURE: ${{ secrets.ARCHITECTURE }}
         run: source .github/workflows/variables.sh
       - name: Install prerequisites
         run: /bin/bash .github/workflows/prerequisites.sh
