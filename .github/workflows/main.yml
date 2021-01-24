@@ -23,8 +23,8 @@ jobs:
           SO: ${{ secrets.SO }}
           ARCHITECTURE: ${{ secrets.ARCHITECTURE }}
         run: source .github/workflows/variables.sh
-#      - name: Install prerequisites
-#        run: /bin/bash .github/workflows/prerequisites.sh
+      - name: Install prerequisites
+        run: /bin/bash .github/workflows/prerequisites.sh
 #      - name: RPM build settings
 #        run: /bin/bash .github/workflows/rpmbuild.sh
 #      - name: Process desired version
