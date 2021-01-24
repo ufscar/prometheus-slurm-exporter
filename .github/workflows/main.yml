@@ -1,0 +1,40 @@
+name: Prometheus Slurm Exporter CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+    container:
+      image: centos:7.9.2009
+      options: --privileged
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Define needed variables
+        env:
+          PSE_VERSION: ${{ secrets.PSE_VERSION }}
+          SO: ${{ secrets.SO }}
+          ARCHITECTURE: ${{ secrets.ARCHITECTURE }}
+        run: source .github/workflows/variables.sh
+#      - name: Install prerequisites
+#        run: /bin/bash .github/workflows/prerequisites.sh
+#      - name: RPM build settings
+#        run: /bin/bash .github/workflows/rpmbuild.sh
+#      - name: Process desired version
+#        run: source .github/workflows/process_version.sh || true
+#      - name: Build exporter
+#        run: /bin/bash .github/workflows/build.sh
+#      - name: Build RPM
+#        run: /bin/bash .github/workflows/rpm_build.sh
+#      - name: Archive RPM
+#        uses: actions/upload-artifact@v2
+#        with:
+#          name: RPM
+#          path: RPM/
