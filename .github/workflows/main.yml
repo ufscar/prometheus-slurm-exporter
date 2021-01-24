@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ master ]
 
+env:
+  PSE_VERSION: ${{ secrets.PSE_VERSION }}
+  SO: ${{ secrets.SO }}
+  ARCHITECTURE: ${{ secrets.ARCHITECTURE }}
+
 jobs:
 
   build:
@@ -14,11 +19,6 @@ jobs:
     container:
       image: centos:7.9.2009
       options: --privileged
-
-    env:
-      PSE_VERSION: ${{ secrets.PSE_VERSION }}
-      SO: ${{ secrets.SO }}
-      ARCHITECTURE: ${{ secrets.ARCHITECTURE }}
 
     steps:
       - uses: actions/checkout@v2
