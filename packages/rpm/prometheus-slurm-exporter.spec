@@ -1,9 +1,13 @@
 %define        __spec_install_post %{nil}
 %define          debug_package %{nil}
 %define        __os_install_post %{_dbpath}/brp-compress
+%define        _name %{getenv:PSE_NAME}
+%define        _version %{getenv:PSE_VERSION}
+%define        _so %{getenv:SO}
+%define        _arch %{getenv:ARCHITECTURE}
 
-Name:           prometheus-slurm-exporter
-Version:        0.3
+Name:           %{_name}
+Version:        %{_version}
 Release:        1%{?dist}
 Summary:        Prometheus exporter for SLURM metrics
 Group:          Monitoring
@@ -11,8 +15,8 @@ Group:          Monitoring
 License:        GPL 3.0
 URL:            https://github.com/vpenso/prometheus-slurm-exporter
 
-Source0:        https://github.com/vpenso/prometheus-slurm-exporter/releases/download/%{version}/slurm_exporter-%{version}.linux-amd64.tar.gz
-Source1:        prometheus-slurm-exporter.service
+Source0:        %{name}.tar.gz
+Source1:        %{name}.service
 Source2:        LICENSE
 Source3:        README.md
 
@@ -30,7 +34,7 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-1-root
 A Prometheus exporter for metrics extracted from the Slurm resource scheduling system.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}
 
 %build
 # Empty section.
@@ -40,12 +44,12 @@ rm -rf %{buildroot}
 mkdir -vp %{buildroot}
 mkdir -vp %{buildroot}%{_unitdir}/
 mkdir -vp %{buildroot}/usr/bin
-mkdir -vp %{buildroot}/usr/share/doc/prometheus-slurm-exporter-%{version}
+mkdir -vp %{buildroot}/usr/share/doc/%{name}-%{version}
 mkdir -vp %{buildroot}/var/lib/prometheus
-install -m 755 prometheus-slurm-exporter %{buildroot}/usr/bin/prometheus-slurm-exporter
-install -m 644 %{SOURCE1} %{buildroot}/usr/lib/systemd/system/prometheus-slurm-exporter.service
-install -m 644 %{SOURCE2} %{buildroot}/usr/share/doc/prometheus-slurm-exporter-%{version}/LICENSE
-install -m 644 %{SOURCE3} %{buildroot}/usr/share/doc/prometheus-slurm-exporter-%{version}/README.md
+install -m 755 /root/rpmbuild/BUILDROOT/%{name} %{buildroot}/usr/bin/%{name}
+install -m 644 %{SOURCE1} %{buildroot}/usr/lib/systemd/system/%{name}.service
+install -m 644 %{SOURCE2} %{buildroot}/usr/share/doc/%{name}-%{version}/LICENSE
+install -m 644 %{SOURCE3} %{buildroot}/usr/share/doc/%{name}-%{version}/README.md
 
 %clean
 rm -rf %{buildroot}
@@ -71,7 +75,7 @@ systemctl start %{name}.service
 %defattr(-,root,root,-)
 %doc LICENSE
 %doc README.md
-%{_bindir}/prometheus-slurm-exporter
+%{_bindir}/%{name}
 %{_unitdir}/%{name}.service
 %attr(755, prometheus, prometheus)/var/lib/prometheus
 
