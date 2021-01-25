@@ -1,10 +1,9 @@
 orig=$(pwd)
-cd "${PSE_NAME}" || exit 1
 cp "bin/${PSE_NAME}" "${HOME}/rpmbuild/BUILDROOT/${PSE_NAME}"
 cp README.md ~/rpmbuild/SOURCES
 cp LICENSE ~/rpmbuild/SOURCES
-cp "../lib/systemd/${PSE_NAME}.service" ~/rpmbuild/SOURCES/
-cp "../packaging/rpm/${PSE_NAME}.spec" ~/rpmbuild/SPECS/
+cp "lib/systemd/${PSE_NAME}.service" ~/rpmbuild/SOURCES/
+cp "packages/rpm/${PSE_NAME}.spec" ~/rpmbuild/SPECS/
 cd ~/rpmbuild/SPECS || exit 1
 rpmbuild -bb "${PSE_NAME}.spec"
 f=$(ls "$HOME/rpmbuild/RPMS/x86_64/")
