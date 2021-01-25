@@ -6,10 +6,6 @@ on:
   pull_request:
     branches: [ master ]
 
-env:
-  PSE_VERSION: ${{ secrets.PSE_VERSION }}
-  SO: ${{ secrets.SO }}
-  ARCHITECTURE: ${{ secrets.ARCHITECTURE }}
 
 jobs:
 
@@ -23,8 +19,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Define needed variables
+        env:
+          PSE_VERSION: ${{ secrets.PSE_VERSION }}
+          SO: ${{ secrets.SO }}
+          ARCHITECTURE: ${{ secrets.ARCHITECTURE }}
         run: source .github/workflows/variables.sh
       - name: Install prerequisites
+        env:
+          PSE_VERSION: $PSE_NAME
+          SO: $SO
+          ARCHITECTURE: $ARCHITECTURE
         run: /bin/bash .github/workflows/prerequisites.sh
 #      - name: RPM build settings
 #        run: /bin/bash .github/workflows/rpmbuild.sh
