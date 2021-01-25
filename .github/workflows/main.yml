@@ -35,5 +35,5 @@ jobs:
       - name: Archive RPM
         uses: actions/upload-artifact@v2
         with:
-          name: ${PSE_NAME}-${PSE_VERSION}-1.el7.x86_64.rpm
-          path: RPM/${PSE_NAME}-${PSE_VERSION}-1.el7.x86_64.rpm
+          name: prometheus-slurm-exporter.rpm
+          path: RPM/prometheus-slurm-exporter.rpm
