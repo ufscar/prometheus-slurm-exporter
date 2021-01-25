@@ -2,6 +2,7 @@ name=prometheus-slurm-exporter
 targz="${name}.tar.gz"
 cd ..
 mkdir "${name}-${PSE_VERSION}"
+ls
 cp "${name}/*" "${name}-${PSE_VERSION}/"
 tar -czvf "${HOME}/rpmbuild/SOURCES/${targz}" "${name}-${PSE_VERSION}"
 cd "${name}" || exit 1
