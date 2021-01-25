@@ -1,4 +1,4 @@
-export PSE_VERSION
+export PSE_VERSION=latest
 export PSE_URL
 export PSE_NAME=prometheus-slurm-exporter
 if [[ -z $SO ]]; then
