@@ -46,7 +46,7 @@ mkdir -vp %{buildroot}%{_unitdir}/
 mkdir -vp %{buildroot}/usr/bin
 mkdir -vp %{buildroot}/usr/share/doc/%{name}-%{version}
 mkdir -vp %{buildroot}/var/lib/prometheus
-install -m 755 /root/rpmbuild/BUILDROOT/%{name} %{buildroot}/usr/bin/%{name}
+install -m 755 %{buildroot}/%{name} %{buildroot}/usr/bin/%{name}
 install -m 644 %{SOURCE1} %{buildroot}/usr/lib/systemd/system/%{name}.service
 install -m 644 %{SOURCE2} %{buildroot}/usr/share/doc/%{name}-%{version}/LICENSE
 install -m 644 %{SOURCE3} %{buildroot}/usr/share/doc/%{name}-%{version}/README.md
