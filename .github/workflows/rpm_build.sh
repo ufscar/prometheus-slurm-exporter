@@ -7,6 +7,6 @@ cp "packages/rpm/${PSE_NAME}.spec" ~/rpmbuild/SPECS/
 cd ~/rpmbuild/SPECS || exit 1
 rpmbuild -bb "${PSE_NAME}.spec"
 f=$(ls "$HOME/rpmbuild/RPMS/x86_64/")
-cp "$HOME/rpmbuild/RPMS/x86_64/$f" "/builds/$CI_PROJECT_PATH/RPMs/"
+cp "$HOME/rpmbuild/RPMS/x86_64/$f" "$orig/RPMs/"
 rm -f "$HOME/rpmbuild/RPMS/x86_64/$f"
 cd "$orig" || exit 1
