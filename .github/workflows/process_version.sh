@@ -11,3 +11,6 @@ if [[ -z $PSE_URL ]]; then
 fi;
 PSE_JSON=$(curl -s "https://api.github.com/repos/${OWNER_REPO}/releases/tags/${PSE_VERSION}")
 PSE_URL=$(echo "$PSE_JSON" | jq -rc ".tarball_url")
+
+echo $PSE_URL
+exit 0
