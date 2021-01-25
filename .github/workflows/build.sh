@@ -1,12 +1,9 @@
 name=prometheus-slurm-exporter
 targz="${name}.tar.gz"
-wget "${PSE_URL}" -O "${targz}" --quiet
-tar -xf "${targz}"
-f=$(tar -tf "${targz}" | grep -E "^[^/]+/$")
-mv "$f" "${name}-${PSE_VERSION}"
-tar -czvf "${targz}" "${name}-${PSE_VERSION}"
-mv "${name}-${PSE_VERSION}" "${name}"
-cp "${targz}" ~/rpmbuild/SOURCES/
+cd ..
+mkdir "${name}-${PSE_VERSION}"
+cp "${name}/*" "${name}-${PSE_VERSION}/"
+tar -czvf "${HOME}/rpmbuild/SOURCES/${targz}" "${name}-${PSE_VERSION}"
 cd "${name}" || exit 1
 export GOPATH=$(pwd)
 rm -f go.mod
