@@ -25,13 +25,8 @@ jobs:
           ARCHITECTURE: ${{ secrets.ARCHITECTURE }}
         run: source .github/workflows/variables.sh
       - name: Install prerequisites
-        env:
-          PSE_VERSION: ${{ env.PSE_VERSION }}
-          PSE_NAME: ${{ env.PSE_NAME }}
-          PSE_URL: ${{ env.PSE_URL }}
-          SO: ${{ env.SO }}
-          ARCHITECTURE: ${{ env.ARCHITECTURE }}
-        run: /bin/bash .github/workflows/prerequisites.sh
+        run: echo ${{ env.PSE_NAME }}
+#        run: /bin/bash .github/workflows/prerequisites.sh
 #      - name: RPM build settings
 #        run: /bin/bash .github/workflows/rpmbuild.sh
 #      - name: Process desired version
